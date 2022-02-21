@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block content %}
+	
+<div class="container w-100 h-100 d-flex justify-content-center align-items-center" >
+	<form action="" class="form-control formlogin" method="POST" style="width: 400px !important;" enctype="multipart/form-data">
+		{% csrf_token %}
+			<div class="form-group">
+			<label for="exampleInputEmail1">Username</label>
+			<input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your username">
+			</div>
+			<div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			</div>
+			<button type="submit" class="btn btn-primary mt-2">Log in</button>
+
+	</form>
+</div>
+	
+{% endblock content %}
+
+

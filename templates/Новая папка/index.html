@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container p-0">
+	<nav class="bg-light my-1 navbar rounded navbar-expand text-white px-1 d-flex align-items-center">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="/"><i class="fa fa-first-order fs-3" aria-hidden="true"></i></a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse d-flex align-items-center" id="navbarSupportedContent">
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+		    	<li><a class="btn text-info border me-1" href="/logout" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+</div>
+
+<div class="container w-100 p-0 table-responsive">
+	<table class="table w-100 table-bordered table-striped table-light text-center" cellspacing="0"
+	width="100%">
+		<thead  class="w-100">
+		  <tr>
+			<th scope="col">Id</th>
+			<th scope="col">Phone</th>
+			<th scope="col">Name</th>
+			<th scope="col">Username</th>
+			<th scope="col">Day</th>
+			<th scope="col">Time</th>
+			<th scope="col">Location</th>
+			<th scope="col">Products</th>
+		  </tr>
+		</thead>
+		<tbody id="reattimedatachange" class="w-100">
+			
+			{% for ord in orders %}
+			<tr class="h-auto">
+				<th scope="row" >{{ord.id}}</th>
+				<td>{{ord.phone}}</td>
+				<td>{{ord.name}}</td>
+				<td>{{ord.username}}</td>
+				<td>{{ord.day}}</td>
+				<td>{{ord.time}}</td>
+				<td><a href="https://maps.google.com/maps?q={{ord.latitude}},{{ord.longitude}}" >Location</a></td>
+				<td><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#EditModal" onclick="sendmessage({{ord.id}})"><i class="fa fa-list" aria-hidden="true"></i></button></td> 
+
+			  </tr>
+			{% endfor %}
+		  
+		</tbody>
+	</table>	  
+	 
+	<div class="modal fade " id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="max-width:75%;">
+		  <div class="modal-content">
+			<div class="modal-body">
+				<table class="table w-100 table-bordered table-light text-center p-2">
+					<thead>
+					  <tr>
+						<th scope="col">Id</th>
+						<th scope="col">Name_uz</th>
+						<th scope="col">Name_ru</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">price</th>
+					  </tr>
+					</thead>
+					<tbody id="modal_table_tbody">
+					
+					</tbody>
+				</table>	
+			
+			
+			</div>
+	
+			{% comment %} <div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  <button type="submit"  class="btn btn-primary">Save changes</button>
+			  <!-- <button type="submit" class="btn btn-primary mt-2">Log in</button> -->
+
+			</div> {% endcomment %}
+		  </div>
+		</div>
+	  </div>
+		
+</div>
+{% endblock content %}
